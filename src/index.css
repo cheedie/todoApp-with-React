@@ -1,13 +1,453 @@
-body {
+*,
+::after,
+::before {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* fonts */
+@import url("https://fonts.googleapis.com/css?family=Karla:400|Spectral:400");
+
+html {
+  font-size: 100%;
+} /*16px*/
+
+:root {
+  /* colors */
+  /* primary */
+  --black: #222;
+  --white: #fff;
+  --red-light: #f8d7da;
+  --red-dark: #842029;
+  --green-light: #d1e7dd;
+  --green-dark: #0f5132;
+
+  /* grey */
+
+  /* fonts */
+  /* change the fonts to the font of ur choice */
+  --headingFont: "Spectral", serif;
+  --bodyFont: "Karla", sans-serif;
+  /* keep this */
+  --smallText: 0.7em;
+  /* rest of the vars */
+  /* change this to ur choice */
+  --backgroundColor: --white;
+  --textColor: --white;
+  --borderRadius: 0.25rem;
+  --letterSpacing: 1px;
+  --transition: 0.3s ease-in-out all;
+  --maxWidth: 1120px;
+  --fixedWidth: 600px;
+
+  /* box shadow */
+  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+body {
+  background: white;
+  font-family: var(--bodyFont);
+  font-weight: 400;
+  line-height: 1.75;
+  color: #000000;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  max-width: 40em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  margin-bottom: 1.38rem;
+  font-family: var(--headingFont);
+  font-weight: 400;
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.052rem;
+}
+
+h2 {
+  font-size: 2.441rem;
+}
+
+h3 {
+  font-size: 1.953rem;
+}
+
+h4 {
+  font-size: 1.563rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+small,
+.text_small {
+  font-size: var(--smallText);
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* use this img class where you have an image */
+.img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* buttons */
+.btn {
+  cursor: pointer;
+  color: var(--white);
+  font-weight: 800;
+  background: #8f91be;
+  border: transparent;
+  border-radius: var(--borderRadius);
+  letter-spacing: var(--letterSpacing);
+  padding: 0.8rem 0.85rem;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+  text-transform: capitalize;
+  display: inline-block;
+}
+.btn:hover {
+  /* change to ur preference */
+  background: #8f91be;
+  box-shadow: var(--shadow-3);
+}
+
+/* for form button to span across the form */
+.btn-block {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* alerts */
+.alert {
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 1rem;
+  border-color: transparent;
+  border-radius: var(--borderRadius);
+}
+
+.alert-danger {
+  color: var(--red-dark);
+  background: var(--red-light);
+}
+
+.alert-success {
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+/* forms */
+
+.form {
+  width: 90vw;
+  max-width: var(--fixedWidth);
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-1);
+  padding: 2rem 2.5rem;
+  margin: 6rem auto;
+}
+
+.form-label,
+.form-input {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+  margin-right: 3rem;
+  width: 100%;
+}
+
+.form-textarea {
+  width: 70%;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--borderRadius);
+  background: var(--backgroundColor);
+  /* change the color */
+  border: 1px solid grey;
+}
+
+.form-row {
+  margin-bottom: 1rem;
+}
+
+.form-textarea {
+  height: 7rem;
+}
+
+::placeholder {
+  font-family: inherit;
+  /* change the color */
+  color: grey;
+}
+
+.form-alert {
+  color: var(--red-dark);
+  letter-spacing: var(--letterSpacing);
+  text-transform: capitalize;
+}
+
+/* loading */
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  width: 6rem;
+  height: 6rem;
+  /* change color */
+  border: 5px solid grey;
+  border-radius: 50%;
+  /* change to site primary color */
+  border-top-color: purple;
+  animation: spinner 0.6s linear infinite;
+  margin: 0 auto;
+}
+
+/* title */
+.title {
+  text-align: center;
+}
+
+.title-underline {
+  /* change color */
+  background: green;
+  width: 7rem;
+  height: 0.25rem;
+  margin: 0 auto;
+  margin-top: -1rem;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  width: 90vw;
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.login-text {
+  font-size: 1.5rem;
+  color: #292b58;
+  font-weight: 900;
+}
+.login-paragraph {
+  text-align: center;
+  font-size: 1rem;
+  color: #1b1c3b;
+}
+
+.main-container {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  /* max-width: 80%;
+  min-width: 40%; */
+}
+
+.section-center {
+  width: 90vw;
+  max-width: var(--fixedWidth);
+  background: var(--white);
+  margin-top: 8rem;
+  padding: 2rem 2.5rem;
+  margin: 3rem auto;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-2);
+  transition: var(--transition);
+}
+
+.form-controls {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  object-fit: cover;
+  height: 30rem;
+  width: 33rem;
+}
+
+.header {
+  height: 3rem;
+  border-bottom: 1px solid black;
+  color: #020826;
+}
+.section {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  margin: 1rem auto;
+  max-width: var(--maxWidth);
+}
+
+.list-form h3 {
+  color: var(--clr-primary-1);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.complete-task {
+  text-decoration: line-through;
+}
+.task {
+  padding: 0.25rem;
+  padding-left: 1rem;
+  background: var(--clr-grey-10);
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
+  border: 1px solid grey;
+  margin-right: 1rem;
+  font-size: 1rem;
+  flex: 1 0 auto;
+  color: var(--clr-grey-5);
+}
+.grocery::placeholder {
+  font-family: var(--ff-secondary);
+  color: var(--clr-grey-5);
+}
+
+.submit-btn {
+  background: blue;
+  color: var(--white);
+  border-top-right-radius: var(--borderRadius);
+  border-bottom-right-radius: var(--borderRadius);
+  border: transparent;
+  flex: 0 0 5rem;
+  display: grid;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  transition: var(--transition);
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+}
+
+.form-input {
+  padding: 0.375rem 0.75rem;
+  padding-left: 1rem;
+  background: var(--backgroundColor);
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
+  font-size: 1rem;
+  flex: 1 0 auto;
+  border: 1px solid grey;
+}
+.submit-btn:hover {
+  /* background: var(--primary-800); */
+  box-shadow: var(--shadow-3);
+}
+
+.task-container {
+  margin-top: 2rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+  padding: 0.25rem 1rem;
+  border-radius: var(--borderRadius);
+  text-transform: capitalize;
+}
+.task-item:hover {
+  color: var(--clr-grey-5);
+  background: var(--clr-grey-10);
+}
+.task-item:hover .title {
+  color: var(--clr-grey-5);
+}
+.title {
+  margin-bottom: 0;
+  color: grey;
+  letter-spacing: 2px;
+  transition: var(--transition);
+}
+.edit-btn,
+.delete-btn,
+.complete-btn {
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0 0.15rem;
+  transition: var(--transition);
+}
+.complete-btn {
+  color: green;
+}
+.edit-btn {
+  color: green;
+}
+.edit-btn:hover {
+  color: var(--clr-green-dark);
+}
+.delete-btn {
+  color: darkred;
+}
+.delete-btn:hover {
+  color: var(--clr-red-dark);
+}
+.clear-btn {
+  text-transform: capitalize;
+  width: 10rem;
+  height: 1.5rem;
+  display: grid;
+  align-items: center;
+  background: transparent;
+  border-color: transparent;
+  color: var(--red-dark);
+  margin: 0 auto;
+  font-size: 0.85rem;
+  letter-spacing: var(--letterSpacing);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1.25rem;
+}
+.clear-btn:hover {
+  color: var(--red-dark);
+}
+
+@media screen and (min-width: 800px) {
+  .main-container {
+    width: 80vw;
+  }
 }
